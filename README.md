@@ -38,8 +38,8 @@ Follow these steps to get the project running on your local machine.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd <your-repository-name>
+git clone https://github.com/beneadie/abhi_hackathon
+cd abhi_hackathon
 ```
 
 ### 2. Create and Activate a Virtual Environment
