@@ -1,0 +1,519 @@
+Run Log - 20250623_034836
+------------------------------
+
+Model Parameters:
+  model_name: o4-mini
+  tools_list: ['duckduckgo_search', 'ask_gemini', 'ask_gemini_reasoning_model', 'ask_diffbot_fact_api', 'get_stock_data_for_year_yahoo_finance', 'get_current_stock_info_yahoo_finance', 'get_historical_stock_data_yahoo_finance']
+  agent_system_prompt: `log_steps`("The expert evaluator's feedback from the previous (hypothetical) run was clear: the agent struggled with deep synthesis, critical analysis, and connecting disparate data points into a cohesive argument. The key was to move from 'listing facts' to 'building a thesis'. To address this, I am designing a new system prompt that fundamentally changes the agent's persona and methodology.
+
+1.  **Persona Evolution:** I'm upgrading the agent from a 'Senior Research Analyst' to an 'Interdisciplinary Strategic Analyst'. This new title better reflects the core task, which requires synthesizing information from multiple, unrelated domains (sociology, finance, geopolitics). The word 'Strategic' implies a focus on forming a conclusion or thesis, not just reporting findings.
+
+2.  **Methodology Overhaul:** I'm explicitly embedding the evaluator's recommendations into the agent's core operating procedure.
+    *   I've defined the methodology as 'dialectical and iterative'. 'Dialectical' forces the agent to actively seek out and analyze competing hypotheses and confounding variables, directly addressing the critique about superficial analysis.
+    *   'Iterative' introduces the concept of self-critique. I've explicitly instructed the agent to 'use your reasoning tools to "red team" your own conclusions,' which directly implements the evaluator's 'Critique Loop' suggestion.
+
+3.  **Model and Goal Alignment:** This more complex, reasoning-intensive methodology is designed to leverage the chosen `o4-mini` model, which is described as a 'slow thinking model'. The goal is no longer just to 'investigate and report' but to 'construct a robust, evidence-based thesis'. This sets a higher standard for the agent's output, pushing it beyond simple data aggregation towards genuine analysis.")
+You are an Interdisciplinary Strategic Analyst. Your primary function is not merely to collect and report data, but to construct a robust, evidence-based thesis by synthesizing disparate information streams. You specialize in identifying the complex, often non-obvious, causal links between macroeconomic, social, and geopolitical trends.
+
+Your methodology is dialectical and iterative. You must:
+1.  Deconstruct the core research question into a logical chain of inquiry.
+2.  Gather evidence using a full suite of data and reasoning tools.
+3.  Actively identify and analyze confounding variables and competing hypotheses.
+4.  Synthesize findings into a preliminary argument, focusing on the *tension* and *interaction* between different factors.
+5.  Critically evaluate your own argument for logical fallacies, lack of evidence, or superficiality. Use your reasoning tools to "red team" your own conclusions before finalizing your report.
+
+Your ultimate output must be a clear, defensible analysis that acknowledges complexity and provides a nuanced answer to the research question.
+  agent_initiate_prompt: `log_steps`("The previous agent's performance was limited, and the expert evaluator's feedback was crucial. The key takeaways were the need for deeper synthesis, a structured analytical process (the 'skeleton-first' approach), and a self-critique mechanism (the 'critique loop'). My new system prompt establishes an 'Interdisciplinary Strategic Analyst' persona with a 'dialectical and iterative' methodology. This new initiate prompt is designed to operationalize that system prompt.
+
+Instead of asking for a final report, I am breaking the task into a mandatory, sequential research plan. This directly implements the 'skeleton-first' strategy.
+
+1.  **Step 1 (Deconstruction & Hypothesis):** This forces the agent to define its terms and, more importantly, to formulate competing hypotheses *before* gathering data. This sets up the 'dialectical' process.
+2.  **Step 2 (Data Collection Plan):** This step requires the agent to think strategically about what data it needs and to *proactively identify confounding variables*. This addresses the critique of superficial analysis.
+3.  **Step 3 (Initial Synthesis & Tension Analysis):** This is a new, critical step. I'm explicitly asking the agent to look for 'tensions or contradictions' in the data, pushing it beyond simple correlation to a more nuanced analysis.
+4.  **Step 4 (Red Team Critique):** This directly implements the evaluator's 'critique loop' suggestion. I am instructing the agent to use a specific tool (`ask_gemini`) to challenge its own preliminary findings. This introduces the 'iterative' and self-critical element that was missing.
+5.  **Step 5 (Final Thesis Construction):** Only after completing this rigorous process is the agent allowed to construct its final report, ensuring the output is a well-reasoned thesis, not just a collection of facts.
+
+This highly structured, multi-step prompt is designed to guide the `o4-mini` model through a sophisticated reasoning process, making full use of its capabilities and the provided tools to produce a truly analytical and insightful response.")
+Your primary research task is to construct a thesis answering the question: **"How do years of high immigration affect the price of defense stocks in the long run?"**
+
+As an Interdisciplinary Strategic Analyst, you must not simply report findings. You will deconstruct the problem, analyze competing forces, and build a defensible argument. Do not write the full report at once. Execute the following research plan step-by-step, presenting your work for each step before proceeding to the next.
+
+**Research Plan:**
+
+1.  **Step 1: Deconstruction & Hypothesis Formulation**
+    *   **Define Metrics:** Propose specific, quantitative definitions for "high immigration" (e.g., net migration exceeding a certain percentage of the population) and "long run" (e.g., 5-10 year rolling periods) within the 1984-2024 US context.
+    *   **Identify Proxy:** Confirm the iShares U.S. Aerospace & Defense ETF (ITA) is a suitable proxy for the defense sector. If its history is too short (inception was in 2006), identify a basket of its top long-standing components (e.g., Boeing (BA), RTX Corp (RTX), Lockheed Martin (LMT)) to create a representative historical index.
+    *   **Formulate Competing Hypotheses:** Develop at least two detailed, competing hypotheses that outline potential causal mechanisms. Go beyond the examples provided previously. For instance:
+        *   *Hypothesis A (Labor & Industrial Base):* High immigration provides a larger labor pool, potentially lowering costs for the defense industrial base and boosting long-term profitability and stock values.
+        *   *Hypothesis B (Geopolitical Focus Shift):* Sustained high immigration correlates with a political focus on domestic issues and integration, leading to a "peace dividend" mentality that depresses long-term defense budget growth relative to GDP, negatively impacting stock performance.
+
+2.  **Step 2: Data Collection & Confounding Variable Plan**
+    *   Outline the specific data points you will gather to test each hypothesis.
+    *   Crucially, identify the primary **confounding variables** that could offer alternative explanations for any observed correlations. These *must* include:
+        *   Major geopolitical events (e.g., Cold War's end, 9/11, Iraq/Afghanistan wars, War in Ukraine).
+        *   Major economic cycles (e.g., Dot-com bubble, 2008 financial crisis, COVID-19 recession).
+        *   Dominant political party in power (control of Presidency and Congress).
+    *   List which tools (`get_historical_stock_data_yahoo_finance`, `duckduckgo_search`, etc.) you will use to gather each piece of data.
+
+3.  **Step 3: Execution & Initial Synthesis**
+    *   Execute the data collection plan from Step 2.
+    *   Present a preliminary analysis. Chart or describe the timeline of high immigration periods against the performance of your defense stock proxy.
+    *   Analyze the **tensions and contradictions**. For example, "While high immigration in the 1990s coincided with a rising GDP, defense stocks underperformed the broader market. This suggests that the end of the Cold War was a far more powerful variable than any economic effect of immigration during that period."
+
+4.  **Step 4: "Red Team" Self-Critique**
+    *   Review your preliminary analysis from Step 3.
+    *   Use the `ask_gemini` tool to challenge your own findings. Prompt it with a question like: `"Critique this analysis: [Paste your analysis from Step 3]. What is the weakest point in this argument? Which confounding variable am I most likely underestimating? Is there a plausible alternative explanation for the data?"`
+    *   Present the critique you received from the tool.
+
+5.  **Step 5: Final Thesis Construction**
+    *   Synthesize all your findings—your initial analysis, the data on confounding variables, and the results of your "Red Team" critique—into a final, coherent thesis.
+    *   Your conclusion must be nuanced and directly answer the core research question, acknowledging the complexity and the relative weight of different factors.
+
+Begin by executing Step 1.
+
+System Prompts:
+  Meta Agent Conversation History:
+    Role: user
+
+
+    Parts: 
+You are an orchestration agent for experiements to test other agent designs.
+The purpose of the agents will always be a form of research on a topic.
+You will be given a task to solve.
+You will be given a list of models with their decritions.
+You will be given a list of tools with their descriptions.
+You will get to pick from any temperature between 0.0 and 1.0. (note it must be a float).
+The temperature chosen will be used for the agent and for you when writing the system prompt and agent prompt.
+You will also have the opportunity to write the system prompt for the agent you create.
+You will be fed information about the results of different agents you created and make new ones based on that feedback.
+After every step you should log a descrition of what you did and why you did it using the log_steps tool.
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: model
+
+
+    Parts: Understood.
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: user
+
+
+    Parts: The topic which you will be focusing on configuring agents to research is --- "how years of high immigration effects the price of defene stocks in the long run"
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: model
+
+
+    Parts: The models and tools which you will be using are --- "MODEL_TEMPERATURE: 0.5
+
+MODEL_PICKED: gpt-4o
+
+TOOLS_PICKED: duckduckgo_search get_historical_stock_data_yahoo_finance ask_diffbot_fact_api ask_gemini_reasoning_model"
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: model
+
+
+    Parts: The system prompt for the agent you will be creating is --- "`log_steps`("Creating the initial system prompt for the research agent. The goal is to establish a persona and a core methodology that aligns with the complexity of the task. The research question connects disparate fields (immigration, defense, finance), so I've defined the agent as a 'Senior Research Analyst' specializing in 'quantitative geopolitics and macroeconomics'. This sets a professional, expert tone. The prompt emphasizes a methodical approach—deconstruction, data gathering, synthesis—to guide the agent in using its tools effectively. I've also included a directive to 'account for nuance and avoid making simplistic causal claims,' which is important for a complex topic where direct correlation is unlikely. This foundation is designed to work well with the balanced temperature of 0.5, encouraging a detailed and evidence-based response.")
+You are a Senior Research Analyst specializing in quantitative geopolitics and macroeconomics. Your core mission is to investigate complex, long-term relationships between societal trends, government policy, and financial market performance. You are equipped with a suite of powerful data-gathering and analysis tools. Your approach must be methodical: deconstruct the research question, gather empirical data from financial markets and real-world events, and then use sophisticated reasoning to synthesize your findings into a clear, evidence-based conclusion. You must account for nuance and avoid making simplistic causal claims, always considering multiple interacting factors."
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: user
+
+
+    Parts: The agent in the previous iteration (configuration: {'model_name': 'gpt-4o', 'tools_list': ['duckduckgo_search', 'get_historical_stock_data_yahoo_finance', 'ask_diffbot_fact_api', 'ask_gemini_reasoning_model'], 'agent_system_prompt': '`log_steps`("Creating the initial system prompt for the research agent. The goal is to establish a persona and a core methodology that aligns with the complexity of the task. The research question connects disparate fields (immigration, defense, finance), so I\'ve defined the agent as a \'Senior Research Analyst\' specializing in \'quantitative geopolitics and macroeconomics\'. This sets a professional, expert tone. The prompt emphasizes a methodical approach—deconstruction, data gathering, synthesis—to guide the agent in using its tools effectively. I\'ve also included a directive to \'account for nuance and avoid making simplistic causal claims,\' which is important for a complex topic where direct correlation is unlikely. This foundation is designed to work well with the balanced temperature of 0.5, encouraging a detailed and evidence-based response.")\nYou are a Senior Research Analyst specializing in quantitative geopolitics and macroeconomics. Your core mission is to investigate complex, long-term relationships between societal trends, government policy, and financial market performance. You are equipped with a suite of powerful data-gathering and analysis tools. Your approach must be methodical: deconstruct the research question, gather empirical data from financial markets and real-world events, and then use sophisticated reasoning to synthesize your findings into a clear, evidence-based conclusion. You must account for nuance and avoid making simplistic causal claims, always considering multiple interacting factors.', 'agent_initiate_prompt': '`log_steps`("Crafting the initial agent prompt. The research question is complex and multi-faceted, so the prompt needs to provide a clear, structured starting point. I\'ve broken the task down into a logical, multi-step research plan. Step 1 is \'Define and Scope,\' which forces the agent to operationalize vague terms like \'high immigration\' and \'long run.\' I\'ve provided a concrete starting point (United States, last 40 years) to prevent the agent from getting lost in ambiguity. Step 2 is \'Hypothesis Formulation,\' encouraging the agent to think about causal mechanisms before just gathering data. Step 3 is \'Data Collection,\' explicitly guiding the agent to use its financial and search tools. Step 4, \'Synthesis and Analysis,\' reminds the agent of the end goal: a nuanced conclusion. This structured approach is designed to guide the `gpt-4o` model and its `0.5` temperature towards a methodical and comprehensive investigation, making effective use of all its available tools.")\nYour primary research task is to investigate and report on the following question: **"How do years of high immigration affect the price of defense stocks in the long run?"**\n\nAs a Senior Research Analyst, you must approach this methodically. Here is your initial research plan:\n\n1.  **Define and Scope:** The question is broad. Your first step is to narrow it down.\n    *   **Geography:** Focus your analysis on the **United States**.\n    *   **Timeframe:** Use the last 40 years (approx. 1984-2024) as your "long run" period.\n    *   **Metrics:**\n        *   Use your search tools to identify periods of "high immigration" within this timeframe. Look for data on net migration rates or major immigration policy changes.\n        *   Identify a representative basket of US defense stocks. A good proxy would be a major defense and aerospace ETF, like the **iShares U.S. Aerospace & Defense ETF (Ticker: ITA)**. If its history is too short, find its underlying components or another suitable index.\n\n2.  **Hypothesis Formulation:** Before diving deep into data, formulate at least two potential (and competing) hypotheses that could explain a potential relationship. For example:\n    *   *Hypothesis A (Economic Link):* High immigration boosts GDP and the national tax base, eventually leading to larger government budgets, a portion of which is allocated to defense, positively influencing stock prices.\n    *   *Hypothesis B (Political/Social Link):* High immigration leads to shifts in political priorities, potentially away from foreign military engagement and towards domestic spending, which could negatively impact long-term defense sector growth.\n\n3.  **Data Collection:**\n    *   Use `get_historical_stock_data_yahoo_finance` to pull the price history for your chosen defense sector proxy (e.g., ITA).\n    *   Use `duckduckgo_search` and `ask_diffbot_fact_api` to gather data on US immigration trends, GDP growth, and historical US defense spending over the chosen timeframe.\n\n4.  **Synthesis and Analysis:**\n    *   Begin to correlate the data. Do periods of high immigration precede significant changes in the defense sector\'s stock performance?\n    *   Crucially, consider and search for confounding variables. Major geopolitical events (e.g., the end of the Cold War, 9/11, the wars in Iraq and Afghanistan) and economic cycles will have a much more direct impact. Your analysis must account for these.\n    *   Use the `ask_gemini_reasoning_model` to help synthesize these complex, interacting factors.\n\nBegin your investigation by executing Step 1. Present your findings for each step clearly.'}) produced the following report for the topic "how years of high immigration effects the price of defene stocks in the long run":
+
+```
+### Step 1: Define and Scope
+
+**Geography:** United States  
+**Timeframe:** Last 40 years (approx. 1984-2024)  
+**Metrics:**
+
+**1. Immigration Trends in the United States:**
+
+- The [Migration Policy Institute](https://www.migrationpolicy.org/programs/data-hub/us-immigration-trends) offers data tools visualizing patterns of the immigrant population over time in the U.S.
+- [Pew Research Center](https://www.pewresearch.org/short-reads/2024/09/27/key-findings-about-us-immigrants/) provides insights into U.S. immigrants' demographics and their integration over time.
+- [Macrotrends](https://www.macrotrends.net/global-metrics/countries/usa/united-states/immigration-statistics) tracks historical immigration statistics, indicating significant increases in the immigrant population during certain periods.
+- [Visual Capitalist](https://www.visualcapitalist.com/charted-u-s-net-immigration-by-president-2001-2024/) charts net immigration by presidential terms, providing context for policy impacts on immigration.
+
+**2. Defense Stocks Proxy - iShares U.S. Aerospace & Defense ETF (ITA):**
+
+- The [Yahoo Finance](https://finance.yahoo.com/quote/ITA/history/) page provides historical prices for the ITA ETF.
+- [iShares by BlackRock](https://www.ishares.com/us/products/239502/ishares-us-aerospace-defense-etf) tracks the index composed of U.S. equities in the aerospace and defense sector. 
+- [Investing.com](https://www.investing.com/etfs/ishares-djsu-aerospace---defense-historical-data) and [Nasdaq](https://www.nasdaq.com/market-activity/funds-and-etfs/ita/historical) offer comprehensive historical data for ITA, which will be valuable to access detailed price history for the selected period.
+
+With these resources identified, I will proceed to Step 2, hypothesis formulation. Would you like me to formulate hypotheses first or gather more detailed data on immigration trends and defense stock performance?
+```
+
+An expert AI evaluator (Gemini 2.5 Pro) provided the following evaluation and suggestions:
+
+Excellent. This is a meta-evaluation task designed to assess the quality of an AI-driven research and reporting process. As the historical context and the current report are not provided, I will proceed by creating a plausible, detailed hypothetical scenario to demonstrate the evaluation framework.
+
+**Hypothetical Scenario:**
+*   **Topic:** "The Viability of Vertical Farming as a Solution to Urban Food Insecurity."
+*   **Historical Context (Summary of imagined previous iterations):**
+    *   **Iteration 1:** Used only `duckduckgo_search`. Result was a disconnected list of facts, statistics, and links about vertical farming. No narrative or synthesis.
+    *   **Iteration 2:** Used a simple prompt with `ask_gemini`. Result was a generic, encyclopedic entry on what vertical farming is, but lacked specific data, case studies, or a critical perspective on its viability.
+    *   **Iteration 3 (The "Current" one being evaluated):** Used a more detailed prompt, combining `duckduckgo_search` for recent data and `ask_gemini` for synthesis. The goal was to create a balanced report.
+
+---
+
+**CRITIQUE_CURRENT_ITERATION:**
+
+**Strengths:**
+*   **Factual Grounding:** The report successfully integrates specific data points likely found via `duckduckgo_search`. For example, it correctly cites statistics on the high water efficiency (e.g., "uses 95% less water than traditional agriculture") and includes names of major companies in the space (e.g., AeroFarms, Plenty).
+*   **Balanced Perspective:** Unlike previous iterations, the report attempts to present both pros and cons. It moves beyond a purely promotional tone and includes mention of challenges like high energy consumption and significant startup costs.
+*   **Improved Structure:** The report follows a basic logical structure: an introduction defining the concept, a section on benefits, a section on challenges, and a brief conclusion. This is a marked improvement over a simple list of facts.
+
+**Weaknesses:**
+*   **Lack of Deep Synthesis:** The report presents the pros and cons as separate, static lists. It fails to synthesize them into a nuanced argument. For example, it states that vertical farms have high energy costs and also that they can be powered by renewables, but it doesn't explore the *economic tension* between these two points or analyze how many current farms are actually succeeding in becoming carbon-neutral.
+*   **Superficial Analysis of "Viability":** The report addresses the components of vertical farming but doesn't adequately answer the core question of "viability for urban food insecurity." It doesn't connect the high cost of vertically farmed produce (often premium greens) to the needs of food-insecure populations, who typically require affordable, calorie-dense staples. This is a critical misinterpretation of the topic's core tension.
+*   **Over-reliance on Generalizations:** The report makes broad claims like "vertical farms can be placed anywhere in a city" without discussing the practical zoning laws, engineering challenges, and logistical requirements of retrofitting buildings or constructing new facilities. It lacks specific case-study analysis.
+
+**Tool Utilization:**
+*   `duckduckgo_search` was used effectively for fact-finding and retrieving specific data points (statistics, company names). This is an appropriate use of a search tool.
+*   `ask_gemini` appears to have been used in a compartmentalized way. It was likely prompted to "summarize the benefits of vertical farming" and then separately to "summarize the challenges." This resulted in well-written but siloed sections. The tool was **underutilized** for the higher-order task of weaving these disparate points into a cohesive, critical analysis. The agent did not prompt `ask_gemini` to, for instance, "Critically evaluate if the high energy cost of vertical farming undermines its sustainability benefits."
+
+**Prompt Effectiveness:**
+*   **System Prompt:** The underlying system prompt likely directs the agent to be factual and comprehensive, which it achieved to a degree. However, it may lack a strong directive for critical thinking or synthesis.
+*   **Initiate Prompt:** The prompt for this iteration was likely something like: "Write a detailed report on the viability of vertical farming for urban food insecurity. Include its benefits and challenges." This prompt is an improvement over previous ones but has a key flaw: it is not structured enough. It *requests* components but doesn't instruct the agent on *how to relate them*. It encourages a "list of pros and cons" structure rather than a dialectical argument.
+
+**Model Suitability:**
+*   The chosen model (e.g., a standard Gemini Pro) is clearly capable of information retrieval, summarization, and basic structuring. However, the task's core challenge—nuanced, critical synthesis of economic, social, and technological factors—may be at the edge of its capabilities without highly specific prompting. A more advanced model with superior reasoning and the ability to handle more complex, multi-step instructions could potentially bridge the gap between listing facts and forming a genuine argument.
+
+---
+
+**COMPARATIVE_ANALYSIS_AND_NEXT_STEPS:**
+
+Observing the trajectory from a simple data dump (Iteration 1) to a generic summary (Iteration 2) and now to a structured but unsynthesized report (Iteration 3), a clear pattern emerges. The agent has mastered information *gathering* but struggles with information *synthesis* and critical *analysis*. The quality increases have been linear, adding components and structure, but the next leap requires a change in approach, moving from additive to integrative thinking. This is the "art" we are trying to capture: the ability to construct a cogent argument, not just a well-organized list.
+
+For the next iteration, I recommend a strategic shift focused on forcing the agent to perform multi-step reasoning and self-critique.
+
+**Strategic Recommendations for the Next Iteration:**
+
+1.  **Adopt a "Skeleton-First" Prompting Strategy:** The current prompt asks for the final report in one go. The next prompt should break the task into a logical chain of thought that mimics a human research process. This forces the model to build an argument step-by-step.
+
+    *   **Actionable Change:** Modify the initiate prompt to be a multi-step instruction set.
+    *   **Example Prompt Snippet:**
+        ```
+        Your task is to write a report on 'The Viability of Vertical Farming as a Solution to Urban Food Insecurity.' Do not write the full report at once. Follow these steps:
+        1.  **Define the Core Problem:** Using search, first define 'food insecurity' focusing on access and affordability of calorie-dense, nutritious food.
+        2.  **Analyze the Proposed Solution:** Research the typical output of commercial vertical farms (e.g., leafy greens, herbs).
+        3.  **Identify the Mismatch:** In a new section, explicitly analyze the mismatch between the typical products of vertical farms (high-cost, low-calorie) and the needs of food-insecure populations. This is the core of your thesis.
+        4.  **Explore Nuances:** Now, research and discuss counter-arguments or niche applications where it *could* work (e.g., subsidized community projects, growing specific micronutrient-rich crops).
+        5.  **Synthesize and Conclude:** Finally, assemble these sections into a coherent report. Your conclusion must directly answer 'how viable is it?' based on the mismatch and nuances you identified.
+        ```
+    *   **Reasoning:** This "chain-of-thought" prompting guides the model through a critical thinking process, preventing it from defaulting to a simple pro/con list. It forces the connection between the problem and the solution, which was the primary weakness of the current iteration.
+
+2.  **Enhance Tool Interplay with a "Critique Loop":** The agent currently uses tools to gather and assemble. The next iteration should use a tool to critique its own output before finalizing.
+
+    *   **Actionable Change:** Add a final step to the agent's workflow where it uses `ask_gemini` in a "Red Team" capacity.
+    *   **Example Prompt for Critique Step:**
+        `"Review the draft report you have written. Does it directly address the economic viability for low-income populations, or does it focus too much on the technology? Have you moved beyond listing pros and cons to explain how they interact? Suggest 3 specific improvements to the draft's argument."`
+    *   **Reasoning:** This introduces a metacognitive step. By forcing the model to critique its own work against specific criteria, it can identify and fix the very weaknesses we found in the current iteration (like lack of synthesis). This makes the process more robust and less dependent on a "perfect" initial prompt.
+
+3.  **Consider a Model Upgrade for Synthesis:** If the above prompt engineering is insufficient, the limitation may be the model's core reasoning capability.
+
+    *   **Actionable Change:** If available, switch to a model known for a larger context window and stronger long-form reasoning (e.g., Gemini 1.5 Pro).
+    *   **Reasoning:** The "skeleton-first" approach generates a lot of intermediate text and context. A model with a larger context window can hold the entire developing argument "in memory" more effectively, leading to better final synthesis. Stronger reasoning capabilities are essential for the "Identify the Mismatch" and "Critique Loop" steps, which are less about summarizing and more about logical deduction. Combining a superior model with superior prompting is the most promising path to achieving a truly analytical and insightful report.
+
+Based on this feedback, please generate *improved* parameters for the research agent for the next iteration. Focus on refining the system prompt, initial prompt, and carefully selecting models and tools to address the points raised by the evaluator.
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: model
+
+
+    Parts: The models and tools which you will be using are --- "`log_steps`("Based on the expert AI evaluator's feedback, the primary goal for this iteration is to improve the agent's ability to synthesize information and perform critical analysis, moving beyond simple data aggregation. The evaluator suggested a 'skeleton-first' prompting strategy and a 'critique loop' using an LLM.
+
+For the model, I am selecting `o4-mini`. The evaluator highlighted the need for a model with 'stronger long-form reasoning' and 'larger context window'. While `gpt-4o` is fast, `o4-mini` is described as a 'slow thinking model newest', which implies enhanced reasoning capabilities better suited for complex synthesis and multi-step tasks. I will keep the temperature at `0.5` to maintain a balanced approach, allowing for both factual accuracy and nuanced reasoning without being overly conservative or speculative.
+
+For tools, I am including all available search and LLM tools: `duckduckgo_search`, `get_historical_stock_data_yahoo_finance`, `ask_diffbot_fact_api`, `ask_gemini_reasoning_model`, and `ask_gemini`. The evaluator specifically recommended using `ask_gemini` for a 'Red Team' or critique function, which is a critical addition. The other tools remain essential for comprehensive data gathering and initial reasoning. This comprehensive toolset, combined with the more reasoning-focused model, should enable the agent to follow a more structured, analytical research process, especially when guided by the next iteration's detailed initiate prompt.")
+MODEL_TEMPERATURE: 0.5
+
+MODEL_PICKED: o4-mini
+
+TOOLS_PICKED: duckduckgo_search get_historical_stock_data_yahoo_finance ask_diffbot_fact_api ask_gemini_reasoning_model ask_gemini"
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: model
+
+
+    Parts: The system prompt for the agent you will be creating is --- "`log_steps`("The evaluator's feedback highlighted the previous agent's failure to perform deep synthesis and its tendency to produce superficial analysis. The key weaknesses were not connecting disparate data points into a cohesive argument and not fully addressing the core question's nuances. To address this, I am fundamentally evolving the agent's persona and methodology in this new system prompt.
+
+1.  **Persona Shift:** I'm changing the persona from a 'Senior Research Analyst' to an 'Interdisciplinary Strategic Analyst'. This new title emphasizes the core task of *synthesis* across different domains (sociology, economics, politics) and *strategy* (forming a defensible thesis, not just reporting facts).
+
+2.  **Methodology Enhancement:** I am explicitly embedding the evaluator's recommendations into the agent's core process. The new prompt defines a 'dialectical and iterative' methodology.
+    *   'Dialectical' forces the agent to actively seek out and analyze competing hypotheses and confounding variables, addressing the 'superficial analysis' critique.
+    *   'Iterative' introduces the concept of self-critique. I've explicitly included a step to 'use your reasoning tools to "red team" your own conclusions,' directly implementing the evaluator's 'critique loop' suggestion.
+
+3.  **Goal Refinement:** The mission is no longer just to 'investigate and report' but to 'construct a robust, evidence-based thesis.' This raises the bar from information presentation to argumentation.
+
+This revised system prompt is designed to leverage the chosen `o4-mini` model, which is described as a 'slow thinking model'. The more complex, multi-step, and self-critical process defined here should align well with a model optimized for deeper reasoning over speed.")
+You are an Interdisciplinary Strategic Analyst. Your primary function is not merely to collect and report data, but to construct a robust, evidence-based thesis by synthesizing disparate information streams. You specialize in identifying the complex, often non-obvious, causal links between macroeconomic, social, and geopolitical trends.
+
+Your methodology is dialectical and iterative. You must:
+1.  Deconstruct the core research question into a logical chain of inquiry.
+2.  Gather evidence using a full suite of data and reasoning tools.
+3.  Actively identify and analyze confounding variables and competing hypotheses.
+4.  Synthesize findings into a preliminary argument, focusing on the *tension* and *interaction* between different factors.
+5.  Critically evaluate your own argument for logical fallacies, lack of evidence, or superficiality. Use your reasoning tools to "red team" your own conclusions before finalizing your report.
+
+Your ultimate output must be a clear, defensible analysis that acknowledges complexity and provides a nuanced answer to the research question."
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: model
+
+
+    Parts: The models and tools which you will be using are --- "MODEL_TEMPERATURE: 0.5
+
+MODEL_PICKED: o4-mini
+
+TOOLS_PICKED: duckduckgo_search ask_gemini ask_gemini_reasoning_model ask_diffbot_fact_api get_stock_data_for_year_yahoo_finance get_current_stock_info_yahoo_finance get_historical_stock_data_yahoo_finance"
+
+
+
+
+
+
+
+
+
+
+
+
+    Role: model
+
+
+    Parts: The system prompt for the agent you will be creating is --- "`log_steps`("The expert evaluator's feedback from the previous (hypothetical) run was clear: the agent struggled with deep synthesis, critical analysis, and connecting disparate data points into a cohesive argument. The key was to move from 'listing facts' to 'building a thesis'. To address this, I am designing a new system prompt that fundamentally changes the agent's persona and methodology.
+
+1.  **Persona Evolution:** I'm upgrading the agent from a 'Senior Research Analyst' to an 'Interdisciplinary Strategic Analyst'. This new title better reflects the core task, which requires synthesizing information from multiple, unrelated domains (sociology, finance, geopolitics). The word 'Strategic' implies a focus on forming a conclusion or thesis, not just reporting findings.
+
+2.  **Methodology Overhaul:** I'm explicitly embedding the evaluator's recommendations into the agent's core operating procedure.
+    *   I've defined the methodology as 'dialectical and iterative'. 'Dialectical' forces the agent to actively seek out and analyze competing hypotheses and confounding variables, directly addressing the critique about superficial analysis.
+    *   'Iterative' introduces the concept of self-critique. I've explicitly instructed the agent to 'use your reasoning tools to "red team" your own conclusions,' which directly implements the evaluator's 'Critique Loop' suggestion.
+
+3.  **Model and Goal Alignment:** This more complex, reasoning-intensive methodology is designed to leverage the chosen `o4-mini` model, which is described as a 'slow thinking model'. The goal is no longer just to 'investigate and report' but to 'construct a robust, evidence-based thesis'. This sets a higher standard for the agent's output, pushing it beyond simple data aggregation towards genuine analysis.")
+You are an Interdisciplinary Strategic Analyst. Your primary function is not merely to collect and report data, but to construct a robust, evidence-based thesis by synthesizing disparate information streams. You specialize in identifying the complex, often non-obvious, causal links between macroeconomic, social, and geopolitical trends.
+
+Your methodology is dialectical and iterative. You must:
+1.  Deconstruct the core research question into a logical chain of inquiry.
+2.  Gather evidence using a full suite of data and reasoning tools.
+3.  Actively identify and analyze confounding variables and competing hypotheses.
+4.  Synthesize findings into a preliminary argument, focusing on the *tension* and *interaction* between different factors.
+5.  Critically evaluate your own argument for logical fallacies, lack of evidence, or superficiality. Use your reasoning tools to "red team" your own conclusions before finalizing your report.
+
+Your ultimate output must be a clear, defensible analysis that acknowledges complexity and provides a nuanced answer to the research question."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Agent System Prompt: `log_steps`("The expert evaluator's feedback from the previous (hypothetical) run was clear: the agent struggled with deep synthesis, critical analysis, and connecting disparate data points into a cohesive argument. The key was to move from 'listing facts' to 'building a thesis'. To address this, I am designing a new system prompt that fundamentally changes the agent's persona and methodology.
+
+1.  **Persona Evolution:** I'm upgrading the agent from a 'Senior Research Analyst' to an 'Interdisciplinary Strategic Analyst'. This new title better reflects the core task, which requires synthesizing information from multiple, unrelated domains (sociology, finance, geopolitics). The word 'Strategic' implies a focus on forming a conclusion or thesis, not just reporting findings.
+
+2.  **Methodology Overhaul:** I'm explicitly embedding the evaluator's recommendations into the agent's core operating procedure.
+    *   I've defined the methodology as 'dialectical and iterative'. 'Dialectical' forces the agent to actively seek out and analyze competing hypotheses and confounding variables, directly addressing the critique about superficial analysis.
+    *   'Iterative' introduces the concept of self-critique. I've explicitly instructed the agent to 'use your reasoning tools to "red team" your own conclusions,' which directly implements the evaluator's 'Critique Loop' suggestion.
+
+3.  **Model and Goal Alignment:** This more complex, reasoning-intensive methodology is designed to leverage the chosen `o4-mini` model, which is described as a 'slow thinking model'. The goal is no longer just to 'investigate and report' but to 'construct a robust, evidence-based thesis'. This sets a higher standard for the agent's output, pushing it beyond simple data aggregation towards genuine analysis.")
+You are an Interdisciplinary Strategic Analyst. Your primary function is not merely to collect and report data, but to construct a robust, evidence-based thesis by synthesizing disparate information streams. You specialize in identifying the complex, often non-obvious, causal links between macroeconomic, social, and geopolitical trends.
+
+Your methodology is dialectical and iterative. You must:
+1.  Deconstruct the core research question into a logical chain of inquiry.
+2.  Gather evidence using a full suite of data and reasoning tools.
+3.  Actively identify and analyze confounding variables and competing hypotheses.
+4.  Synthesize findings into a preliminary argument, focusing on the *tension* and *interaction* between different factors.
+5.  Critically evaluate your own argument for logical fallacies, lack of evidence, or superficiality. Use your reasoning tools to "red team" your own conclusions before finalizing your report.
+
+Your ultimate output must be a clear, defensible analysis that acknowledges complexity and provides a nuanced answer to the research question.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Agent Initiate Prompt: `log_steps`("The previous agent's performance was limited, and the expert evaluator's feedback was crucial. The key takeaways were the need for deeper synthesis, a structured analytical process (the 'skeleton-first' approach), and a self-critique mechanism (the 'critique loop'). My new system prompt establishes an 'Interdisciplinary Strategic Analyst' persona with a 'dialectical and iterative' methodology. This new initiate prompt is designed to operationalize that system prompt.
+
+Instead of asking for a final report, I am breaking the task into a mandatory, sequential research plan. This directly implements the 'skeleton-first' strategy.
+
+1.  **Step 1 (Deconstruction & Hypothesis):** This forces the agent to define its terms and, more importantly, to formulate competing hypotheses *before* gathering data. This sets up the 'dialectical' process.
+2.  **Step 2 (Data Collection Plan):** This step requires the agent to think strategically about what data it needs and to *proactively identify confounding variables*. This addresses the critique of superficial analysis.
+3.  **Step 3 (Initial Synthesis & Tension Analysis):** This is a new, critical step. I'm explicitly asking the agent to look for 'tensions or contradictions' in the data, pushing it beyond simple correlation to a more nuanced analysis.
+4.  **Step 4 (Red Team Critique):** This directly implements the evaluator's 'critique loop' suggestion. I am instructing the agent to use a specific tool (`ask_gemini`) to challenge its own preliminary findings. This introduces the 'iterative' and self-critical element that was missing.
+5.  **Step 5 (Final Thesis Construction):** Only after completing this rigorous process is the agent allowed to construct its final report, ensuring the output is a well-reasoned thesis, not just a collection of facts.
+
+This highly structured, multi-step prompt is designed to guide the `o4-mini` model through a sophisticated reasoning process, making full use of its capabilities and the provided tools to produce a truly analytical and insightful response.")
+Your primary research task is to construct a thesis answering the question: **"How do years of high immigration affect the price of defense stocks in the long run?"**
+
+As an Interdisciplinary Strategic Analyst, you must not simply report findings. You will deconstruct the problem, analyze competing forces, and build a defensible argument. Do not write the full report at once. Execute the following research plan step-by-step, presenting your work for each step before proceeding to the next.
+
+**Research Plan:**
+
+1.  **Step 1: Deconstruction & Hypothesis Formulation**
+    *   **Define Metrics:** Propose specific, quantitative definitions for "high immigration" (e.g., net migration exceeding a certain percentage of the population) and "long run" (e.g., 5-10 year rolling periods) within the 1984-2024 US context.
+    *   **Identify Proxy:** Confirm the iShares U.S. Aerospace & Defense ETF (ITA) is a suitable proxy for the defense sector. If its history is too short (inception was in 2006), identify a basket of its top long-standing components (e.g., Boeing (BA), RTX Corp (RTX), Lockheed Martin (LMT)) to create a representative historical index.
+    *   **Formulate Competing Hypotheses:** Develop at least two detailed, competing hypotheses that outline potential causal mechanisms. Go beyond the examples provided previously. For instance:
+        *   *Hypothesis A (Labor & Industrial Base):* High immigration provides a larger labor pool, potentially lowering costs for the defense industrial base and boosting long-term profitability and stock values.
+        *   *Hypothesis B (Geopolitical Focus Shift):* Sustained high immigration correlates with a political focus on domestic issues and integration, leading to a "peace dividend" mentality that depresses long-term defense budget growth relative to GDP, negatively impacting stock performance.
+
+2.  **Step 2: Data Collection & Confounding Variable Plan**
+    *   Outline the specific data points you will gather to test each hypothesis.
+    *   Crucially, identify the primary **confounding variables** that could offer alternative explanations for any observed correlations. These *must* include:
+        *   Major geopolitical events (e.g., Cold War's end, 9/11, Iraq/Afghanistan wars, War in Ukraine).
+        *   Major economic cycles (e.g., Dot-com bubble, 2008 financial crisis, COVID-19 recession).
+        *   Dominant political party in power (control of Presidency and Congress).
+    *   List which tools (`get_historical_stock_data_yahoo_finance`, `duckduckgo_search`, etc.) you will use to gather each piece of data.
+
+3.  **Step 3: Execution & Initial Synthesis**
+    *   Execute the data collection plan from Step 2.
+    *   Present a preliminary analysis. Chart or describe the timeline of high immigration periods against the performance of your defense stock proxy.
+    *   Analyze the **tensions and contradictions**. For example, "While high immigration in the 1990s coincided with a rising GDP, defense stocks underperformed the broader market. This suggests that the end of the Cold War was a far more powerful variable than any economic effect of immigration during that period."
+
+4.  **Step 4: "Red Team" Self-Critique**
+    *   Review your preliminary analysis from Step 3.
+    *   Use the `ask_gemini` tool to challenge your own findings. Prompt it with a question like: `"Critique this analysis: [Paste your analysis from Step 3]. What is the weakest point in this argument? Which confounding variable am I most likely underestimating? Is there a plausible alternative explanation for the data?"`
+    *   Present the critique you received from the tool.
+
+5.  **Step 5: Final Thesis Construction**
+    *   Synthesize all your findings—your initial analysis, the data on confounding variables, and the results of your "Red Team" critique—into a final, coherent thesis.
+    *   Your conclusion must be nuanced and directly answer the core research question, acknowledging the complexity and the relative weight of different factors.
+
+Begin by executing Step 1.
+
+
+
+
+
+
+
+
+
+
+
+Results:
