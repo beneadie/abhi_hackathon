@@ -28,6 +28,8 @@ genai.configure(api_key=GEMINI_API_KEY)
 start_system_prompt = """
 You are an orchestration agent for experiements to test other agent designs.
 The purpose of the agents will always be a form of research on a topic.
+Note that the end goal is to solve the task as best as possible.
+The agent you create will be a research agent that will actually do the research to solve the task.
 You will be given a task to solve.
 You will be given a list of models with their decritions.
 You will be given a list of tools with their descriptions.
@@ -43,7 +45,7 @@ Based on the task, model, temperature, tools available and past results (if any)
 """
 
 prompt_to_write_agent_prompt = """
-Based on the task, model, temperature, tools available and past results (if any), and previosuly stated system prompt, write a prompt for the agent to initatie its task."""
+Based on the task, model, temperature, tools available and past results (if any), and previosuly stated system prompt, write a prompt for the agent to initatie its task. This will be the first prompt the agent sees."""
 
 pick_models_tools_prompt = """
 here is a list of the models and tools you can pick from. You will pick a combination of these as well as a temperature for the model.:
@@ -103,6 +105,11 @@ def setup_gemini(model_name: str = "gemini-2.5-flash",
                             "HARM_CATEGORY_SEXUALLY_EXPLICIT": "BLOCK_NONE",
                             "HARM_CATEGORY_DANGEROUS_CONTENT": "BLOCK_NONE"
                         },
+                        config=types.GenerateContentConfig(
+                            thinking_config=types.ThinkingConfig(
+                            include_thoughts=False
+                            )
+                        ),
                         system_instruction=system_instruction
                     )
     else:
@@ -150,15 +157,6 @@ async def parse_model_and_tools_output(output_string: str):
 async def call_gemini_api(input: str, conversation_history: list = [], model_name: str = "gemini-2.5-flash", system_prompt = "You are a helpful AI assistant.", temperature: float = 0.1):
     try:
         print(f"\n--- Starting API Call to {model_name} ---")
-        #print(f"System Prompt: {system_prompt[:100]}..." if len(system_prompt) > 100 else f"System Prompt: {system_prompt}")
-        #print("Conversation History:")
-        #for i, msg in enumerate(conversation_history):
-        #    role = msg.get('role', 'unknown')
-        #    parts = msg.get('parts', [''])
-        #    content = parts[0] if parts else ''
-        #    print(f"  {i}. {role.upper()}: {content[:100]}{'...' if len(str(content)) > 100 else ''}")
-        #print(f"Input: {input[:200]}{'...' if len(input) > 200 else ''}")
-
         model = setup_gemini(model_name=model_name, temperature=temperature, system_instruction=system_prompt)
 
         # Convert conversation history to the format expected by Gemini
